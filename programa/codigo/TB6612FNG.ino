@@ -1,3 +1,4 @@
+
 # define AIN1 4    // pin 1 de dirección del Motor Izquierdo
 # define AIN2 7    // pin 2 de dirección del Motor Izquierdo
 # define PWMA 6    // pin PWM del Motor Izquierdo
@@ -5,6 +6,7 @@
 # define BIN1 8    // pin 1 de dirección del Motor Derecho
 # define BIN2 9    // pin 2 de dirección del Motor Derecho
 # define PWMB 5    // pin PWM del Motor Derecho
+
 
 void TB6612FNG_init() {
   pinMode(AIN1, OUTPUT);
@@ -14,9 +16,6 @@ void TB6612FNG_init() {
   pinMode(BIN2, OUTPUT);
   pinMode(PWMB, OUTPUT);
 }
-
-
-
 void MotorIz(int value) {
   if (value >= 0) {
     // si valor positivo vamos hacia adelante
@@ -32,24 +31,27 @@ void MotorIz(int value) {
   analogWrite(PWMA, value);
 }
 
-
 void MotorDe(int value) {
   if (value >= 0) {
     // si valor positivo vamos hacia adelante
+
     digitalWrite(BIN1, HIGH);
     digitalWrite(BIN2, LOW);
   } else {
     // si valor negativo vamos hacia atras
+
     digitalWrite(BIN1, LOW);
     digitalWrite(BIN2, HIGH);
     value *= -1;
   }
+
   // Setea Velocidad
+
   analogWrite(PWMB, value);
 }
 
 
-void Motores(int left, int right) {
+void Motores(int left, int righ) {
   MotorIz(left);
-  MotorDe(right);
+  MotorDe(righ);
 }
