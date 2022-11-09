@@ -93,13 +93,13 @@ void readSensors() {
     online = 0;
     sum = 100;
   }
-    //if (online) {
+    if (online) {
       //for (int i = 0; i < 6; i++) {
         //Serial.print(s_p[i]);
         //Serial.print("\t");
       //}
       //Serial.println();
-    //}
+    }
 }
 
 
