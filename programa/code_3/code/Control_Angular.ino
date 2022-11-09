@@ -19,5 +19,4 @@ int PIDLambo(int POS, float Kp, float Kd, float Ki) {
   return pot_giro;
 
 
-
 }

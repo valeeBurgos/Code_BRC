@@ -12,6 +12,5 @@ void WaitBoton() {   // Entra en un bucle infinito de espera.
 }
 
 void beep() {
-  tone(PINBUZZER, 2000, 100);
-  delay(200);
+  
 }

@@ -9,27 +9,35 @@
 
 
 void TB6612FNG_init() {
+
   pinMode(AIN1, OUTPUT);
   pinMode(AIN2, OUTPUT);
   pinMode(PWMA, OUTPUT);
   pinMode(BIN1, OUTPUT);
   pinMode(BIN2, OUTPUT);
   pinMode(PWMB, OUTPUT);
+
 }
+
 void MotorIz(int value) {
   if (value >= 0) {
     // si valor positivo vamos hacia adelante
+
     digitalWrite(AIN1, HIGH);
     digitalWrite(AIN2, LOW);
   } else {
     // si valor negativo vamos hacia atras
+
     digitalWrite(AIN1, LOW);
     digitalWrite(AIN2, HIGH);
     value *= -1;
   }
+
   // Setea Velocidad
+
   analogWrite(PWMA, value);
 }
+
 
 void MotorDe(int value) {
   if (value >= 0) {

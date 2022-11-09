@@ -52,31 +52,31 @@ void calibracion_8() {
       }
     }
   }
-  //Serial.println();
-  //Serial.print("Mínimos frontal");
-  //Serial.print("\t");
-  //for (int i = 0; i < 6; i++) {
-  //  Serial.print(v_s_min[i]);
-  //  Serial.print("\t");
-  //}
+  Serial.println();
+  Serial.print("Mínimos frontal");
+  Serial.print("\t");
+  for (int i = 0; i < 6; i++) {
+    Serial.print(v_s_min[i]);
+    Serial.print("\t");
+  }
   
-  //Serial.println();
-  //Serial.print("Máximos frontal");
-  //Serial.print("\t");
-  //for (int i = 0; i < 6; i++) {
-    //Serial.print(v_s_max[i]);
-    //Serial.print("\t");
-  //}
-  //Serial.println();
-  //Serial.println();
-  //Serial.println();
+  Serial.println();
+  Serial.print("Máximos frontal");
+  Serial.print("\t");
+  for (int i = 0; i < 6; i++) {
+    Serial.print(v_s_max[i]);
+    Serial.print("\t");
+  }
+  Serial.println();
+  Serial.println();
+  Serial.println();
 }
 
 void calibracion_lat(){
 
   //Calibracion en laterales.
   int v_s_lat[2];
-  for (int j = 0; j < 100; j++) {
+  for (int j = 0; j < 50; j++) {
     delay(10);
     v_s_lat[0] = analogRead(A7);
     v_s_lat[1] = analogRead(A0);
