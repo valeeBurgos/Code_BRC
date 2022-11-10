@@ -12,6 +12,7 @@ int umbral = 50;
 int s_der;
 int s_izq;
 
+int time_3;
 int v_s_min_lat[2] = {1023, 1023};
 int v_s_max_lat[2] = {0, 0};
 volatile int s_p_lat[2];
@@ -135,31 +136,65 @@ void read_lat() {
 
 
 
+//Función que retorna true si ha visto recientemente un cruce
+bool is_cruce() {
+  //lee sensores laterales
+  read_lat() ;
+  
+  int time2= millis();
+  //Si se ha leido un 3, reasigno la variable
+  
+  if (state == 3) {
+    time_3 = time2;
+    return true;
+  } else {
+    //si ha pasado medio segundo desde la ultima lectura
+    if (time2 > time_3 + 70) {
+      return true;
+    }
+    //si ha pasado mas tiempo, considero que puede ser un nuevo cruce.
+    return false;
+  }
+}
 
+
+
+
+
+
+//Función para manejar el estado actual. Retorna 0 si debe detenerse.
 int manejo_estado() {
+  //lee sensores laterales
   read_lat() ;
   
   if (state != o_state) {
-    //Serial.println("cambio de estado ");
-    
-    if (state == 0 and o_state == 2 and oo_state==0) {
-      //Serial.println("marcador a la izquierda"); 
+    //evaluo si spudo haber sido un cruce y en caso de serlo retorno inmediatamente.
+    if (is_cruce()) {
     }
+
+    //marcador de detenerse, retorna 0.
     if (state == 0 and o_state== 1 and oo_state==0) {
       //Serial.println("marcador a la der"); 
       return 0;
-  }
+     }
   //Serial.println("cambio de estado:");
-    //evaluo si es marcador si cruce.
-    if ( (state == 0 and (o_state ==3 || oo_state == 3 || ooo_state == 3))) {
-      //Serial.println("cruce ");
-    }
+    //Reasigno los estados
     ooo_state = oo_state;
     oo_state = o_state;
     o_state =state;
     state = current_state;
   }
+  //En caso de no haber retornado 0, retorno 1.
   return 1;
+}
+
+
+//devuelve los 4 estados recordados a  su valor inicial igual a 0
+void state_reset() {
+  state = 0;
+  o_state = 0;
+  oo_state = 0;
+  ooo_state = 0;
 }
 
   
