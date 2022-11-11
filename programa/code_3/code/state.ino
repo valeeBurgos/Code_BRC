@@ -12,7 +12,7 @@ int umbral = 50;
 int s_der;
 int s_izq;
 
-int time_3;
+unsigned long time_3;
 int v_s_min_lat[2] = {1023, 1023};
 int v_s_max_lat[2] = {0, 0};
 volatile int s_p_lat[2];
@@ -141,7 +141,7 @@ bool is_cruce() {
   //lee sensores laterales
   read_lat() ;
   
-  int time2= millis();
+  unsigned long time2= millis();
   //Si se ha leido un 3, reasigno la variable
   
   if (state == 3) {
@@ -173,11 +173,10 @@ int manejo_estado() {
     }
 
     //marcador de detenerse, retorna 0.
-    if (state == 0 and o_state== 1 and oo_state==0) {
+    else if (state == 0 and o_state== 1 and oo_state==0) {
       //Serial.println("marcador a la der"); 
       return 0;
      }
-  //Serial.println("cambio de estado:");
     //Reasigno los estados
     ooo_state = oo_state;
     oo_state = o_state;
@@ -196,5 +195,8 @@ void state_reset() {
   oo_state = 0;
   ooo_state = 0;
 }
+
+
+
 
   

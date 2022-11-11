@@ -3,6 +3,7 @@
 void Peripherals_init() {
   pinMode(PINBOTON, INPUT);
   pinMode(PINBUZZER, OUTPUT);
+  pinMode(13, OUTPUT);
 }
 
 
