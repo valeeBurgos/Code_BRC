@@ -120,10 +120,7 @@ void loop() {
     tone(PINBUZZER, 2000, 100);
   }
   
-  if (ini == 1 && m==0 and tiem > tiempo2 + 5000) {
-    if (is_cruce()) {
-      ini = 1;
-    }
+  if (ini == 1 && m==0 and tiem > tiempo2 + 1000) {
     else {          //Debe detenerse AHORA.
       Motores(0,0);
       tone(PINBUZZER, 2000, 100);
